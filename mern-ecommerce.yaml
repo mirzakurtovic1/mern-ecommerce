@@ -1,0 +1,130 @@
+namespace: mern-ecommerce
+mern-ecommerce:
+  defines: runnable
+  metadata:
+    name: mern-ecommerce
+    description: >-
+      An e-commerce application built with the MERN stack (MongoDB, Express,
+      React, Node.js).
+    icon: https://emojiapi.dev/api/v1/shopping.svg
+  containers:
+    mern-ecommerce:
+      build: .
+  services:
+    main:
+      container: mern-ecommerce
+      port: <- $port
+      host-port: <- $port
+      publish: false
+      protocol: TCP
+      description: The main port the application is served on
+  connections:
+    mongodb:
+      target: ''
+      service: ''
+  variables:
+    port:
+      env: PORT
+      type: int
+      description: Port the application is served on
+      value: '3000'
+    mongo-uri:
+      env: MONGO_URI
+      type: string
+      description: MongoDB connection string
+      value: <- connection-hostname("mongodb")
+    base-client-url:
+      env: BASE_CLIENT_URL
+      type: string
+      description: URL for client requests
+      value: http://localhost:8080
+    base-server-url:
+      env: BASE_SERVER_URL
+      type: string
+      description: URL for server requests
+      value: http://localhost:3000
+    base-api-url:
+      env: BASE_API_URL
+      type: string
+      description: Base path for API calls
+      value: api
+    jwt-secret:
+      env: JWT_SECRET
+      type: string
+      description: Secret key for JWT authentication
+      value: '!!!SETME!!!'
+    mailchimp-key:
+      env: MAILCHIMP_KEY
+      type: string
+      description: Mailchimp API key
+      value: '!!!SETME!!!'
+    mailchimp-list-key:
+      env: MAILCHIMP_LIST_KEY
+      type: string
+      description: Mailchimp List Key
+      value: '!!!SETME!!!'
+    mailgun-key:
+      env: MAILGUN_KEY
+      type: string
+      description: Mailgun API Key
+      value: '!!!SETME!!!'
+    mailgun-domain:
+      env: MAILGUN_DOMAIN
+      type: string
+      description: Domain for Mailgun
+      value: '!!!SETME!!!'
+    mailgun-email-sender:
+      env: MAILGUN_EMAIL_SENDER
+      type: string
+      description: Email sender for Mailgun
+      value: '!!!SETME!!!'
+    google-client-id:
+      env: GOOGLE_CLIENT_ID
+      type: string
+      description: Google Client ID
+      value: '!!!SETME!!!'
+    google-client-secret:
+      env: GOOGLE_CLIENT_SECRET
+      type: string
+      description: Google Client Secret
+      value: '!!!SETME!!!'
+    google-callback-url:
+      env: GOOGLE_CALLBACK_URL
+      type: string
+      description: URL to redirect to after Google authentication
+      value: auth/google/callback
+    facebook-client-id:
+      env: FACEBOOK_CLIENT_ID
+      type: string
+      description: Facebook Client ID
+      value: '!!!SETME!!!'
+    facebook-client-secret:
+      env: FACEBOOK_CLIENT_SECRET
+      type: string
+      description: Facebook Client Secret
+      value: '!!!SETME!!!'
+    facebook-callback-url:
+      env: FACEBOOK_CALLBACK_URL
+      type: string
+      description: URL to redirect to after Facebook authentication
+      value: auth/facebook/callback
+    aws-access-key-id:
+      env: AWS_ACCESS_KEY_ID
+      type: string
+      description: Access Key ID for AWS services
+      value: '!!!SETME!!!'
+    aws-secret-access-key:
+      env: AWS_SECRET_ACCESS_KEY
+      type: string
+      description: Secret Access Key for AWS services
+      value: '!!!SETME!!!'
+    aws-region:
+      env: AWS_REGION
+      type: string
+      description: AWS Region
+      value: '!!!SETME!!!'
+    aws-bucket-name:
+      env: AWS_BUCKET_NAME
+      type: string
+      description: AWS S3 bucket name for file storage
+      value: '!!!SETME!!!'
