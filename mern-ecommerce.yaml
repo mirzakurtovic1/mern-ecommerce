@@ -1,0 +1,130 @@
+namespace: mern-ecommerce
+mern-ecommerce:
+  defines: runnable
+  metadata:
+    name: mern-ecommerce
+    description: >-
+      An eCommerce platform developed with the MERN stack (MongoDB, Express.js,
+      React.js, Node.js).
+    icon: https://emojiapi.dev/api/v1/shopping.svg
+  containers:
+    mern-ecommerce:
+      build: .
+  services:
+    application-port:
+      container: mern-ecommerce
+      port: <- $port
+      host-port: <- $port
+      publish: false
+      protocol: TCP
+      description: The application listens on this port.
+  connections:
+    mongodb:
+      target: arangodb/db
+      service: db
+  variables:
+    port:
+      env: PORT
+      type: int
+      description: Port used by the node server
+      value: '3000'
+    mongo-uri:
+      env: MONGO_URI
+      type: string
+      description: URL to connect to MongoDB
+      value: <- connection-hostname("mongodb")
+    jwt-secret:
+      env: JWT_SECRET
+      type: string
+      description: Secret key to encode/decode JWT
+      value: '!!!SETME!!!'
+    mailchimp-key:
+      env: MAILCHIMP_KEY
+      type: string
+      description: Mailchimp key for email services
+      value: '!!!SETME!!!'
+    mailchimp-list-key:
+      env: MAILCHIMP_LIST_KEY
+      type: string
+      description: Mailchimp list ID for email list management
+      value: '!!!SETME!!!'
+    mailgun-key:
+      env: MAILGUN_KEY
+      type: string
+      description: Mailgun API key for email services
+      value: '!!!SETME!!!'
+    mailgun-domain:
+      env: MAILGUN_DOMAIN
+      type: string
+      description: Domain registered on Mailgun for sending emails
+      value: '!!!SETME!!!'
+    mailgun-email-sender:
+      env: MAILGUN_EMAIL_SENDER
+      type: string
+      description: Email address used to send emails via Mailgun
+      value: '!!!SETME!!!'
+    google-client-id:
+      env: GOOGLE_CLIENT_ID
+      type: string
+      description: Google OAuth client ID
+      value: '!!!SETME!!!'
+    google-client-secret:
+      env: GOOGLE_CLIENT_SECRET
+      type: string
+      description: Google OAuth client secret
+      value: '!!!SETME!!!'
+    google-callback-url:
+      env: GOOGLE_CALLBACK_URL
+      type: string
+      description: Google OAuth callback URL
+      value: auth/google/callback
+    facebook-client-id:
+      env: FACEBOOK_CLIENT_ID
+      type: string
+      description: Facebook OAuth client ID
+      value: '!!!SETME!!!'
+    facebook-client-secret:
+      env: FACEBOOK_CLIENT_SECRET
+      type: string
+      description: Facebook OAuth client secret
+      value: '!!!SETME!!!'
+    facebook-callback-url:
+      env: FACEBOOK_CALLBACK_URL
+      type: string
+      description: Facebook OAuth callback URL
+      value: auth/facebook/callback
+    base-client-url:
+      env: BASE_CLIENT_URL
+      type: string
+      description: Client base URL
+      value: http://localhost:8080
+    base-server-url:
+      env: BASE_SERVER_URL
+      type: string
+      description: Server base URL
+      value: http://localhost:3000
+    base-api-url:
+      env: BASE_API_URL
+      type: string
+      description: Server base API path
+      value: api
+    aws-access-key-id:
+      env: AWS_ACCESS_KEY_ID
+      type: string
+      description: AWS access key ID for AWS SDK
+      value: '!!!SETME!!!'
+    aws-secret-access-key:
+      env: AWS_SECRET_ACCESS_KEY
+      type: string
+      description: AWS secret access key for AWS SDK
+      value: '!!!SETME!!!'
+    aws-region:
+      env: AWS_REGION
+      type: string
+      description: Default AWS region
+      value: '!!!SETME!!!'
+    aws-bucket-name:
+      env: AWS_BUCKET_NAME
+      type: string
+      description: Name of the AWS S3 bucket for file storage
+      value: '!!!SETME!!!'
